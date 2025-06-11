@@ -1,0 +1,35 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          kakao:
+            client-id: ${KAKAO_REST_API_KEY}
+            # ??? ??? REST API key
+            redirect-uri: ${KAKAO_REDIRECT_URI}
+            # ??? ??????, login processing url
+            # ????? ???, ??????? ??? login processing url? ????? ???
+            authorization-grant-type: authorization_code
+            client-authentication-method: client_secret_post
+            # client secret ?? ?? ? ?. ??? none??
+            client-secret: none
+            # client_secret_post??? ???
+            client-name: kakao
+            # ClientRegistration ????? key? ??? ??
+        provider:
+          kakao:
+            authorization-uri: https://kauth.kakao.com/oauth/authorize
+            # https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#request-code
+            token-uri: https://kauth.kakao.com/oauth/token
+            # https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#request-token
+            user-info-uri: https://kapi.kakao.com/v2/user/me
+            # https://developers.kakao.com/docs/latest/ko/kakaologin/rest-api#req-user-info
+            user-name-attribute: id
+            # DefaultOAuth2UserService?? DefaultOAuth2User ???? ??? nameAttributeKey ??? ??
+            # OAuth2User.getName() -> ????? ?? ?? ??? ???? ????
+            # provider? PK ? ?? ??
+      resourceserver:
+        jwt:
+          authorities-claim-delimiter: ','
+          authorities-claim-name: authorities
+          principal-claim-name: sub
