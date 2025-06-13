@@ -1,6 +1,7 @@
 package com.groom.infrastructure.auth.authentication
 
 import com.groom.domain.auth.Authentication
+import com.groom.domain.auth.AuthenticationRepository
 import com.groom.domain.auth.AuthenticationRole
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.data.jpa.repository.Query
@@ -8,16 +9,17 @@ import org.springframework.stereotype.Repository
 import org.springframework.transaction.annotation.Transactional
 
 @Repository
-class AuthenticationCoreRepository internal constructor(private val jpaRepository: AuthenticationJpaRepository) {
+class AuthenticationCoreRepository internal constructor(private val jpaRepository: AuthenticationJpaRepository) :
+    AuthenticationRepository {
     @Transactional
-    fun create(initialRole: AuthenticationRole = AuthenticationRole.USER): Authentication {
+    override fun create(initialRole: AuthenticationRole): Authentication {
         val entity = AuthenticationEntity()
         val authentication = jpaRepository.save(entity)
         authentication.addRole(initialRole)
         return authentication.toDomain()
     }
 
-    fun findBy(id: Long): Authentication {
+    override fun findBy(id: Long): Authentication {
         return jpaRepository.findByIdWithRole(id)
             .toDomain()
     }

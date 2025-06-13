@@ -6,7 +6,7 @@ import com.groom.domain.auth.OAuth2ProviderName
 import org.springframework.stereotype.Component
 
 @Component
-class OAuth2VOMapper(private val objectMapper: ObjectMapper) {
+internal class OAuth2VOMapper(private val objectMapper: ObjectMapper) {
     fun convert(providerName: OAuth2ProviderName,
                 attributes: Map<String, Any>): CreateOAuth2UserInformation {
         when (providerName) {

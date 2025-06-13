@@ -1,12 +1,11 @@
 package com.groom.domain.auth
 
-import com.groom.infrastructure.auth.authentication.AuthenticationCoreRepository
 import org.springframework.stereotype.Component
 
 @Component
-class AuthenticationService(private val authenticationCoreRepository: AuthenticationCoreRepository) {
-    fun findBy(id: Long): Authentication = authenticationCoreRepository.findBy(id)
+class AuthenticationService(private val authenticationRepository: AuthenticationRepository) {
+    fun findBy(id: Long): Authentication = authenticationRepository.findBy(id)
     fun createAuthentication(initializeRole: AuthenticationRole = AuthenticationRole.USER): Authentication {
-        return authenticationCoreRepository.create(initializeRole)
+        return authenticationRepository.create(initializeRole)
     }
 }

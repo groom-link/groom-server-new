@@ -12,7 +12,7 @@ import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 
 @Entity(name = "oauth2_informations")
-internal data class OAuth2InformationEntity(
+internal data class OAuth2UserInformationEntity(
     val authenticationId: Long,
     val providerUserId: String,
     val email: String,
@@ -39,8 +39,8 @@ internal data class OAuth2InformationEntity(
 
     companion object {
         fun create(authenticationId: Long,
-                   information: CreateOAuth2UserInformation): OAuth2InformationEntity {
-            return OAuth2InformationEntity(
+                   information: CreateOAuth2UserInformation): OAuth2UserInformationEntity {
+            return OAuth2UserInformationEntity(
                 authenticationId = authenticationId,
                 providerUserId = information.providerUserId,
                 email = information.email,
