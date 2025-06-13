@@ -1,15 +1,15 @@
 package com.groom.common
 
-
+@JvmRecord
 data class Response<T>(val success: Boolean, val body: T) {
-    constructor(body: T) : this(body is ExceptionResponse, body)
+    constructor(body: T) : this(body is ErrorResponse, body)
 }
 
 @JvmRecord
-data class ExceptionResponse(val status: Int, val message: String) {
+data class ErrorResponse(val status: Int, val message: String) {
     companion object {
-        fun of(status: Int, e: Throwable): ExceptionResponse {
-            return ExceptionResponse(status, e.localizedMessage)
+        fun of(status: Int, e: Throwable): ErrorResponse {
+            return ErrorResponse(status, e.localizedMessage)
         }
     }
 }

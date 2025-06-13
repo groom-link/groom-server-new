@@ -1,9 +1,9 @@
-package com.groom.auth.domain
+package com.groom.infrastructure.auth.oauth2
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
 
-class KakaoUserInfo(val id: Long, @JsonProperty("kakao_account") val kakaoAccount: KakaoAccount) {
+internal class KakaoUserInfo(val id: Long, @JsonProperty("kakao_account") val kakaoAccount: KakaoAccount) {
     class KakaoAccount(
         val profile: Profile,
         val name: String,
