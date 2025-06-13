@@ -1,7 +1,7 @@
 package com.groom.infrastructure.user
 
-import com.groom.domain.user.CreateUserCommand
 import com.groom.domain.user.User
+import com.groom.domain.user.UserCommand
 import com.groom.infrastructure.common.EntityTimeStamp
 import jakarta.persistence.Entity
 import jakarta.persistence.Id
@@ -25,7 +25,7 @@ class UserEntity private constructor(
     }
 
     companion object {
-        fun fromCreate(command: CreateUserCommand): UserEntity {
+        fun fromCreate(command: UserCommand.Create): UserEntity {
             return UserEntity(authenticationId = command.authenticationId,
                 email = command.email,
                 nickname = command.nickname,

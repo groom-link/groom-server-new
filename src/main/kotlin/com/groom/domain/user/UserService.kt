@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService(private val userRepository: UserRepository) {
-    fun create(command: CreateUserCommand): User {
+    fun create(command: UserCommand.Create): User {
         return userRepository.createUser(command)
     }
 }

@@ -7,7 +7,7 @@ class OAuth2UserInformationService(private val oAuth2UserInformationRepository: 
     fun findBy(providerName: OAuth2ProviderName, providerUserId: String): OAuth2UserInformation? =
         oAuth2UserInformationRepository.findBy(providerName, providerUserId)
 
-    fun create(command: CreateOAuth2UserInformationCommand): OAuth2UserInformation {
+    fun create(command: OAuth2UserInformationCommand.Create): OAuth2UserInformation {
         return oAuth2UserInformationRepository.create(command)
     }
 }
