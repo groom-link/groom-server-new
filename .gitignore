@@ -1,4 +1,4 @@
-HELP.md
+README.md
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -39,3 +39,5 @@ out/
 ### Kotlin ###
 .kotlin
 .env
+key.pub
+key
