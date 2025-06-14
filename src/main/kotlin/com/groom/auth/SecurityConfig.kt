@@ -14,10 +14,11 @@ import org.springframework.web.cors.CorsConfigurationSource
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource
 
 
-private const val OAUTH2_LOGIN_PATH = "/api/v1/oauth2/login/*"
+private const val OAUTH2_AUTHORIZATION_CODE_LOGIN_PATH = "/api/v1/auth/login/oauth2/code/*"
+private const val OAUTH2_LOGIN_PAGE_PATH_BASE_PATH = "/api/v1/auth/login/oauth2/authorization"
 
 @Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 @EnableMethodSecurity(jsr250Enabled = true)
 class SecurityConfig(
     private val objectMapper: ObjectMapper,
@@ -29,7 +30,10 @@ class SecurityConfig(
         http.cors { disable() }
         http.formLogin { disable() }
         http.oauth2Login {
-            it.loginProcessingUrl(OAUTH2_LOGIN_PATH)
+            it.authorizationEndpoint{endPoint ->
+                endPoint.baseUri(OAUTH2_LOGIN_PAGE_PATH_BASE_PATH)
+            }
+            it.loginProcessingUrl(OAUTH2_AUTHORIZATION_CODE_LOGIN_PATH)
             it.successHandler(handler.successLoginHandler)
         }
         http.exceptionHandling {

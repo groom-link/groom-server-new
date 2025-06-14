@@ -25,7 +25,7 @@ class AuthFacade(private val userService: UserService,
                 authentication))
         userService.create(UserCommand.Create(
             authenticationId = authentication.id,
-            email = oAuth2UserInformation.email,
+//            email = oAuth2UserInformation.email, TODO: 사업자 등록후 가능
             nickname = oAuth2UserInformation.nickname,
             profileImageUrl = oAuth2UserInformation.profileImageUrl,
         ))

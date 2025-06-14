@@ -20,7 +20,7 @@ import java.time.Instant
 class AuthController(private val oAuth2UserService: OAuth2UserService<OAuth2UserRequest, OAuth2User>,
                      private val clientRegistrationRepository: ClientRegistrationRepository,
                      private val jwtService: JwtService) {
-    @PostMapping("oauth2/{providerName}/login/token")
+    @PostMapping("/login/oauth2/token/{providerName}")
     fun oAuth2LoginWithToken(@PathVariable providerName: String,
                              @RequestBody body: AuthRequest.OAuth2LoginWithAccessToken): Response<JwtResponse> {
         val clientRegistration = clientRegistrationRepository.findByRegistrationId(providerName)

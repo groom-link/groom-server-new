@@ -5,7 +5,7 @@ enum class OAuth2ProviderName {
 
     companion object {
         fun fromString(s: String): OAuth2ProviderName {
-            return OAuth2ProviderName.valueOf(s.lowercase())
+            return OAuth2ProviderName.valueOf(s.uppercase())
         }
     }
 }

@@ -12,7 +12,7 @@ import jakarta.persistence.OneToMany
 
 @Entity(name = "authentications")
 internal class AuthenticationEntity(
-    @OneToMany(cascade = [(CascadeType.ALL)], orphanRemoval = true)
+    @OneToMany(mappedBy = "authenticationId", cascade = [(CascadeType.ALL)], orphanRemoval = true)
     val roles: MutableSet<AuthenticationRoleEntity> = mutableSetOf(),
 ) {
     @Id
@@ -34,7 +34,8 @@ internal class AuthenticationEntity(
 
     fun toDomain(): Authentication {
         return Authentication(id = id,
-            roles = roles.map { it.role }.toSet(),
+            roles = roles.map { it.role }
+                .toSet(),
             timestamp = timeStamp.toDomain())
     }
 }

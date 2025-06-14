@@ -6,10 +6,11 @@ import com.fasterxml.jackson.annotation.JsonProperty
 internal class KakaoUserInfo(val id: Long, @JsonProperty("kakao_account") val kakaoAccount: KakaoAccount) {
     class KakaoAccount(
         val profile: Profile,
-        val name: String,
-        val email: String,
-        @field:JsonProperty("phone_number") @JsonProperty("phone_number") val phoneNumber: String,
-        val ci: String
+//        TODO: 사업자 등록 후 가능
+//        val name: String,
+//        val email: String,
+//        @field:JsonProperty("phone_number") @JsonProperty("phone_number") val phoneNumber: String,
+//        val ci: String
     ) {
         @JvmRecord
         data class Profile(

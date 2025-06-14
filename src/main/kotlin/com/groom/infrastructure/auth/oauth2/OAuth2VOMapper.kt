@@ -24,8 +24,8 @@ internal class OAuth2VOMapper(private val objectMapper: ObjectMapper) {
         return CreateOAuth2UserInformation(
             providerName = OAuth2ProviderName.KAKAO,
             providerUserId = kakaoUserInfo.id.toString(),
-            email = kakaoUserInfo.kakaoAccount.email,
-            nickname = kakaoUserInfo.kakaoAccount.name,
+//            email = kakaoUserInfo.kakaoAccount.email, TODO: 사업자 등록 후 가능
+            nickname = kakaoUserInfo.kakaoAccount.profile.nickname,
             profileImageUrl = kakaoUserInfo.kakaoAccount.profile.profileImageUrl,
         )
     }

@@ -15,7 +15,7 @@ import jakarta.persistence.Id
 internal data class OAuth2UserInformationEntity(
     val authenticationId: Long,
     val providerUserId: String,
-    val email: String,
+//    val email: String, TODO: 사업자 등록후 가능
     val nickname: String,
     @Enumerated(EnumType.STRING)
     val providerName: OAuth2ProviderName,
@@ -31,7 +31,7 @@ internal data class OAuth2UserInformationEntity(
         return OAuth2UserInformation(id = id,
             providerName = providerName,
             providerUserId = providerUserId,
-            email = email,
+//            email = email, TODO: 사업자 등록후 가능
             nickname = nickname,
             profileImageUrl = profileImageUrl)
     }
@@ -43,7 +43,7 @@ internal data class OAuth2UserInformationEntity(
             return OAuth2UserInformationEntity(
                 authenticationId = authenticationId,
                 providerUserId = information.providerUserId,
-                email = information.email,
+//                email = information.email,
                 providerName = information.providerName,
                 nickname = information.nickname,
                 profileImageUrl = information.profileImageUrl,
